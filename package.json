@@ -40,5 +40,10 @@
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "bootstrap": "^4.4.1",
+    "bootstrap.native": "^2.0.27"
   }
 }
