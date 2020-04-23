@@ -1,4 +1,5 @@
 import Element from './Element';
+import Input from './Input';
 import { hasMinLength, isURL } from '../helpers/validationHelper';
 import { messages } from '../helpers/constants';
 
@@ -6,10 +7,10 @@ export default class RecipeForm extends Element {
   constructor() {
     super();
     this.errors = {
-      title: [],
-      imageUrl: [],
-      ingredients: [],
-      description: []
+      title: '',
+      imageUrl: '',
+      ingredients: '',
+      description: ''
     };
 
     this.createForm();
@@ -20,30 +21,30 @@ export default class RecipeForm extends Element {
     this.element.addEventListener('submit', this.onSubmit);
 
     let inputs = [
-      this.wrapTo('col-sm-10', this.createTextInput({
+      new Input('input', {
         name: 'title',
         placeholder: 'Enter a recipe title',
         id: 'title',
         onBlur: this.validateTitle
-      })),
-      this.wrapTo('col-sm-10', this.createTextInput({
+      }),
+      new Input('input', {
         name: 'imageUrl',
         placeholder: 'Enter a recipe image URL',
         id: 'imageUrl',
         onBlur: this.validateImageUrl
-      })),
-      this.wrapTo('col-sm-10', this.createTextArea({
+      }),
+      new Input('textarea', {
         name: 'ingredients',
         placeholder: 'Enter a recipe ingredients',
         id: 'ingredients',
         onBlur: this.validateIngredients
-      })),
-      this.wrapTo('col-sm-10', this.createTextArea({
+      }),
+      new Input('textarea', {
         name: 'description',
         placeholder: 'Enter a recipe description',
         id: 'description',
         onBlur: this.validateDescription
-      })),
+      }),
     ];
 
     const labels = [
@@ -55,20 +56,10 @@ export default class RecipeForm extends Element {
 
     const submitButton = this.createSubmitButton('Submit');
 
-    inputs.forEach(input => {
-      const validFeedBack = this.createElement('div', { classNames: ['valid-feedback'] });
-      input.appendChild(validFeedBack);
-    });
-    const inputContainers = inputs.map((input, idx) => this.wrapTo('form-group', labels[idx], input));
+    const inputContainers = inputs.map((input, idx) => this.wrapTo('form-group', labels[idx], input.element));
     this.element.append(...inputContainers, submitButton);
   };
 
-  wrapTo = (className, ...elements) => {
-    const wrapper = this.createElement('div', { classNames: [className] });
-    wrapper.append(...elements);
-
-    return wrapper;
-  };
 
   createLabel = (forAttr, text) => {
     const label = this.createElement('label', {
@@ -78,36 +69,6 @@ export default class RecipeForm extends Element {
 
     label.innerText = text;
     return label;
-  };
-
-  createTextInput = ({ name, placeholder, id, onBlur }) => {
-    const input = this.createElement('input', {
-      classNames: ['form-control'],
-      attributes: {
-        type: 'text',
-        name,
-        placeholder,
-        id
-      }
-    });
-
-    input.addEventListener('blur', onBlur);
-    return input;
-  };
-
-  createTextArea = ({ name, placeholder, id, onBlur }) => {
-    const textarea = this.createElement('textarea', {
-      classNames: ['form-control'],
-      attributes: {
-        name,
-        placeholder,
-        id
-      }
-    });
-
-    textarea.addEventListener('blur', onBlur);
-
-    return textarea;
   };
 
   createSubmitButton = (text) => {

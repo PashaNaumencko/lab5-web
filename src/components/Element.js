@@ -1,7 +1,7 @@
 export default class Element {
   element;
 
-  createElement(tagName, options = {}) {
+  createElement = (tagName, options = {}) => {
     const { classNames, attributes } = options;
     const element = document.createElement(tagName);
     if(classNames) {
@@ -12,4 +12,11 @@ export default class Element {
     }
     return element;
   }
+
+  wrapTo = (className, ...elements) => {
+    const wrapper = this.createElement('div', { classNames: [className] });
+    wrapper.append(...elements);
+
+    return wrapper;
+  };
 }
