@@ -3,6 +3,26 @@ html {
   line-height: var(--lh);
 }
 
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+.modal.show {
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal::-webkit-scrollbar {
+  display: none;
+}
+
+.modal.scrollable {
+
+}
+
 .truncate-overflow {
   --max-lines: 3;
   position: relative;
