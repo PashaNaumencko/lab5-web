@@ -20,6 +20,8 @@ export default class RecipeForm extends Element {
     this.element = this.createElement('form');
     this.element.addEventListener('submit', this.onSubmit);
 
+    const formHeader = this.createElement('h4', { classNames: ['mt-3', 'mb-3']});
+    formHeader.innerText = 'Create Recipe';
     let inputs = [
       new Input('input', {
         name: 'title',
@@ -57,7 +59,7 @@ export default class RecipeForm extends Element {
     const submitButton = this.createSubmitButton('Submit');
 
     const inputContainers = inputs.map((input, idx) => this.wrapTo('form-group', labels[idx], input.element));
-    this.element.append(...inputContainers, submitButton);
+    this.element.append(formHeader, ...inputContainers, submitButton);
   };
 
   createLabel = (forAttr, text) => {

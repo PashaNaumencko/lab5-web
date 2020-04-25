@@ -42,9 +42,9 @@ export default class Modal extends Element {
     const ingredientsHeader = this.createHeader('Ingredients');
     const recipeIngredients = this.createIngredientsList(ingredients);
     const descriptionHeader = this.createHeader('Description');
-    const recipeDescription = this.createElement('p', { classNames: ['card-text', 'truncate-overflow'] });
+    const recipeDescription = this.createElement('p', { classNames: ['card-text'] });
 
-    recipeDescription.innerText = description;
+    recipeDescription.innerHTML= description;
     return this.wrapTo(
       'modal-body',
       recipeImage,
