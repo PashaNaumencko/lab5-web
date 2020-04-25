@@ -60,7 +60,6 @@ export default class RecipeForm extends Element {
     this.element.append(...inputContainers, submitButton);
   };
 
-
   createLabel = (forAttr, text) => {
     const label = this.createElement('label', {
       classNames: ['col-sm-2', 'col-form-label'],

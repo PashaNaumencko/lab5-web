@@ -12,11 +12,12 @@ export default class RecipeList extends Element {
   fillCards = () => {
     const recipes = getRecipeList();
     const cards = recipes.map(recipe => {
-      const { element: recipeElement } = new Recipe(recipe);
+      let { element: recipeElement } = new Recipe(recipe);
+      recipeElement = this.wrapTo('col-4', recipeElement);
       return recipeElement;
     });
 
-    this.element = this.createElement('div', { classNames: ['row'] });
+    this.element = this.createElement('div', { classNames: ['row', 'mt-3'] });
     this.element.append(...cards);
   };
 
