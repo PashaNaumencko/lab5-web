@@ -17,7 +17,7 @@ function getFetchArgs(options) {
 }
 
 export function callApi(route, options = {}) {
-  const url = process.env.K8S_SECRET_API_URL + route;
+  const url = process.env.API_URL + route;
   return fetch(url, getFetchArgs(options))
     .then(response =>
       response.ok ? response.json() : Promise.reject(Error('Failed to load'))

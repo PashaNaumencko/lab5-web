@@ -19,7 +19,7 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new Dotenv(),
-    new EnvironmentPlugin(['K8S_SECRET_API_URL'])
+    new EnvironmentPlugin(['API_URL'])
   ],
   module: {
     rules: [
