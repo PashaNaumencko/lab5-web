@@ -1,4 +1,5 @@
 const path = require('path');
+const { EnvironmentPlugin } = require('webpack');
 const HTMLPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -18,6 +19,7 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new Dotenv(),
+    new EnvironmentPlugin(['K8S_SECRET_API_URL'])
   ],
   module: {
     rules: [
