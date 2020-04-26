@@ -1,6 +1,7 @@
 import Element from './Element';
 import Input from './Input';
 import { hasMinLength, isURL } from '../helpers/validationHelper';
+import { createRecipe } from "../services";
 import { messages } from '../helpers/constants';
 
 export default class RecipeForm extends Element {
@@ -84,12 +85,32 @@ export default class RecipeForm extends Element {
     return button;
   };
 
-  onSubmit = (event) => {
+  onSubmit = async (event) => {
     event.preventDefault();
     const fields = event.target.elements;
+    const fieldArray = Array.from(fields);
     if(this.validateForm(fields)) {
-      Array.from(fields).forEach(field => console.log(field.value));
+      const submitButton = fieldArray.pop();
+      this.setButtonState(submitButton, 'Loading...', true);
+      const newRecipeData = Object.fromEntries(fieldArray.map(({ name, value }) => [name, value]));
+      await createRecipe(newRecipeData);
+      this.setButtonState(submitButton, 'Submit');
+      this.resetForm(fieldArray);
+      console.log(this.errors);
     }
+  };
+
+  setButtonState = (button, text, disabled = false) => {
+    button.innerText = text;
+    button.disabled = disabled;
+  };
+
+  resetForm = (fields) => {
+    fields.forEach(field => {
+      field.value = '';
+      field.classList.remove('is-valid');
+      Object.keys(this.errors).forEach(error => this.errors[error] = '');
+    });
   };
 
   validateForm = (fields) => [
