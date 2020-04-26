@@ -8,7 +8,12 @@ export default class Loader extends Element {
   }
 
   createLoader = () => {
-    this.element = this.createElement('div', { classNames: ['d-flex', 'justify-content-center'] });
+    this.element = this.createElement('div', { classNames: [
+      'd-flex',
+      'justify-content-center',
+      'align-items-center',
+      'h-100vh'
+    ]});
     const loader = this.createElement('div', { classNames: ['spinner-border'] });
     this.element.appendChild(loader);
   }
