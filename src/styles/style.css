@@ -19,8 +19,8 @@ html {
   display: none;
 }
 
-.modal.scrollable {
-
+.h-100vh {
+  height: 100vh;
 }
 
 .truncate-overflow {
