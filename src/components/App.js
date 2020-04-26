@@ -3,8 +3,11 @@ import '../styles/style.css';
 import 'bootstrap.native/dist/bootstrap-native-v4';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { getRecipes } from "../services";
+
 import RecipeList from './RecipeList';
 import RecipeForm from './RecipeForm';
+import Loader from './Loader';
 
 export default class App {
   constructor() {
@@ -13,7 +16,13 @@ export default class App {
     this.recipeFormLink = document.getElementById('recipeFormLink');
 
     this.bindNavigationHandlers();
-    this.showPage(new RecipeList());
+    this.fetchRecipes();
+  }
+
+  fetchRecipes = async () => {
+    this.showPage(new Loader());
+    const recipes = await getRecipes();
+    this.showPage(new RecipeList(recipes));
   }
 
   bindNavigationHandlers = () => {
@@ -22,7 +31,7 @@ export default class App {
       previousTargetLink.parentNode.classList.remove('active');
       target.parentNode.classList.add('active');
       previousTargetLink = target;
-      this.showPage(new RecipeList());
+      this.fetchRecipes();
     });
     this.recipeFormLink.addEventListener('click', ({ target }) => {
       previousTargetLink.parentNode.classList.remove('active');

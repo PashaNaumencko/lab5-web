@@ -37,8 +37,8 @@ export default class Modal extends Element {
   }
 
   createModalBody = () => {
-    const { imgUrl, ingredients, description } = this.recipe;
-    const recipeImage = this.createRecipeImage(imgUrl);
+    const { imageUrl, ingredients, description } = this.recipe;
+    const recipeImage = this.createRecipeImage(imageUrl);
     const ingredientsHeader = this.createHeader('Ingredients');
     const recipeIngredients = this.createIngredientsList(ingredients);
     const descriptionHeader = this.createHeader('Description');
@@ -75,11 +75,11 @@ export default class Modal extends Element {
     return ingredientsList;
   }
 
-  createRecipeImage = (imgUrl) => {
+  createRecipeImage = (imageUrl) => {
     const image = this.createElement('img', {
       classNames: ['img-responsive', 'm-auto'],
       attributes: {
-        src: imgUrl,
+        src: imageUrl,
         alt: 'Recipe Image'
       }
     });

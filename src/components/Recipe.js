@@ -10,9 +10,9 @@ export default class Recipe extends Element {
   }
 
   createRecipeCard = () => {
-    const { imgUrl } = this.recipe;
+    const { imageUrl } = this.recipe;
     this.element = this.createElement('div', { classNames: ['card', 'shadow'] });
-    const image = this.createCardImage(imgUrl);
+    const image = this.createCardImage(imageUrl);
     const body = this.createCardBody();
     this.element.append(image, body);
   };
@@ -40,11 +40,11 @@ export default class Recipe extends Element {
     return showMoreButton;
   };
 
-  createCardImage = (imgUrl) => {
+  createCardImage = (imageUrl) => {
     const image = this.createElement('img', {
       classNames: ['card-img-top'],
       attributes: {
-        src: imgUrl,
+        src: imageUrl,
         alt: 'Recipe Image'
       }
     });
