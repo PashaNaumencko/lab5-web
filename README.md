@@ -1,1 +1,1 @@
-# lab5-web
+# recipe-app-pure-js
