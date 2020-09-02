@@ -96,7 +96,6 @@ export default class RecipeForm extends Element {
       await createRecipe(newRecipeData);
       this.setButtonState(submitButton, 'Submit');
       this.resetForm(fieldArray);
-      console.log(this.errors);
     }
   };
 
